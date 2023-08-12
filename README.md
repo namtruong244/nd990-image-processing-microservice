@@ -8,7 +8,7 @@ You have been hired as a software engineer to develop an application that will h
 
 * The project demonstrates an understanding of a good cloud git process
 
-All project code is stored in a GitHub repository. There are two branches - one for development (dev, development) and one master.
+All project code is stored in a GitHub repository. There are two branches - one for development (develop) and one master.
 
 ### Development Server
 
