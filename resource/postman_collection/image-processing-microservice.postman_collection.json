@@ -1,0 +1,873 @@
+{
+  "info": {
+    "_postman_id": "31e1f3ac-2d1c-41a3-8df1-0e7b766f1eed",
+    "name": "image-processing-microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Local Development Server",
+      "item": [
+        {
+          "name": "Image filtering - Valid URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is present\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is image\", function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.eql('image/jpeg');",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Image filtering  - Another Valid URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is present\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is image\", function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.eql('image/jpeg');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?image_url=https://demoda.vn/wp-content/uploads/2022/05/hinh-anh-naruto-dep-ngau.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://demoda.vn/wp-content/uploads/2022/05/hinh-anh-naruto-dep-ngau.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Root Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "The default endpoint url the server starts."
+          },
+          "response": []
+        },
+        {
+          "name": "Unreachable URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Image filtering failed\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "No image_url supplied",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"The query parameter `image_url` is required\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ]
+            },
+            "description": "Endpoint which does not provide the required `image_url` query parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid query parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"The query parameter `image_url` is required\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?imageUrl=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "imageUrl",
+                  "value": "https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg"
+                }
+              ]
+            },
+            "description": "Endpoint which does not provide the required `image_url` query parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "No Authorization Header",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"No authorization headers\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Authorization Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Failed to authenticate\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "hbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{HOST}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{HOST}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "URL Endpoints for local development on Development Server http://localhost:8082",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Elastic Beanstalk Production Server",
+      "item": [
+        {
+          "name": "Image Filtering - Valid URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is present\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is image\", function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.eql('image/jpeg');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Image Filtering - Another Valid URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is present\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is image\", function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.eql('image/jpeg');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?image_url=https://demoda.vn/wp-content/uploads/2022/05/hinh-anh-naruto-dep-ngau.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://demoda.vn/wp-content/uploads/2022/05/hinh-anh-naruto-dep-ngau.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Root Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "The default endpoint url the server starts."
+          },
+          "response": []
+        },
+        {
+          "name": "Unreachable URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Image filtering failed\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "No image_url supplied",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"The query parameter `image_url` is required\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ]
+            },
+            "description": "Endpoint which does not provide the required `image_url` query parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid query parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"The query parameter `image_url` is required\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiTmFtIFRydW9uZyIsImlhdCI6MTkxNjIzOTAyMn0.vXgZic20Bfz180LZJq0x8yZ245EeEC8zeh-RQSAXIwE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?imageUrl=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "imageUrl",
+                  "value": "https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg"
+                }
+              ]
+            },
+            "description": "Endpoint which does not provide the required `image_url` query parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "No Authorization Header",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"No authorization headers\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Athorization Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches string\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Failed to authenticate\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dyJhbGciOiJIUzI1NiJ9.ZW1haWxAZW1haWwuY29t.VXMNdtYKvcRkQgHicspZp95nGQhl9ifC1btryH_dlOI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{EB_URL}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+              "protocol": "http",
+              "host": [
+                "{{EB_URL}}"
+              ],
+              "path": [
+                "filteredimage"
+              ],
+              "query": [
+                {
+                  "key": "image_url",
+                  "value": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "URL Endpoints running on Elastic Beanstalk http://udagram-image-filt-microservice-prod.ap-south-1.elasticbeanstalk.com/",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "HOST",
+      "value": "localhost:8082"
+    },
+    {
+      "key": "EB_URL",
+      "value": "image-processing-microservice-dev.us-east-1.elasticbeanstalk.com "
+    }
+  ]
+}
