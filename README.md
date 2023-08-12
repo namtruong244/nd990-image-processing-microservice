@@ -32,9 +32,9 @@ Successful responses have a 200 code, at least one error code for caught errors 
 
 * The project demonstrates the ability to create functional cloud deployments
 
-Endpoint URL: TODO
+Endpoint URL: http://image-processing-microservice-dev.us-east-1.elasticbeanstalk.com/
 
-Example: TODO
+Example: http://image-processing-microservice-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg
 
 Requires: Authorization Header with Bearer Token. Token is included in the Postman collection in a resource/postman_collection directory.
 

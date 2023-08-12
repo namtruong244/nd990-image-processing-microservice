@@ -24,7 +24,7 @@ app.get('/filteredimage', requiresAuth(), async (req, res) => {
 
     // Validate query param required
     if (!image_url) {
-        res.status(400).json({message: '`image_url` query is required!'})
+        return res.status(400).json({message: '`image_url` query is required!'})
     }
 
     try {
